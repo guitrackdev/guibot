@@ -53,6 +53,12 @@ class AutomatedGuiActions:
         else:
             return x,y
 
+    #Detects of an image is on screen or not (without sending alerts)
+    def ImageExistsOnScreen(self, image):
+        if (pyautogui.locateCenterOnScreen(image) == None):
+            return False
+        return True
+
     #Search an image and returns the top left position
     def SearchTopLeftImage(self, image):
         import sys
@@ -126,6 +132,10 @@ class AutomatedGuiActions:
     #A simple press wrapper
     def PressEnter(self):
         pyautogui.press('enter')
+
+    #A simple press wrapper
+    def PressEscape(self):
+        pyautogui.press('esc')
 
     #A simple press wrapper
     def PressText(self, number):
@@ -207,6 +217,11 @@ class AutomatedGuiActions:
         pyautogui.keyDown('winleft')
         pyautogui.press('down')
         pyautogui.keyUp('winleft')
+
+    #Moving the mouse cursor to the center of the screen
+    def MoveToCenter(self):
+        x, y = pyautogui.size()
+        pyautogui.moveTo(x/2, y/2, self.moveToSpeed)
 
 def main():
     #This example, and the image that looks for, was tested on a xubuntu
